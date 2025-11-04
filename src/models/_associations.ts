@@ -3,6 +3,7 @@ import { ArticleApproved } from "./ArticleApproved";
 import { ArticleContent } from "./ArticleContent";
 import { ArticleDuplicateAnalysis } from "./ArticleDuplicateAnalysis";
 import { ArticleEntityWhoCategorizedArticleContract } from "./ArticleEntityWhoCategorizedArticleContract";
+import { ArticleEntityWhoCategorizedArticleContracts02 } from "./ArticleEntityWhoCategorizedArticleContracts02";
 import { ArticleIsRelevant } from "./ArticleIsRelevant";
 import { ArticleKeywordContract } from "./ArticleKeywordContract";
 import { ArticleReportContract } from "./ArticleReportContract";
@@ -207,6 +208,27 @@ export function applyAssociations(): void {
 		}
 	);
 	ArticleEntityWhoCategorizedArticleContract.belongsTo(
+		EntityWhoCategorizedArticle,
+		{
+			foreignKey: "entityWhoCategorizesId",
+		}
+	);
+
+	// --- Article has many to many EntityWhoCategorizedArticle (through ArticleEntityWhoCategorizedArticleContracts02) ---
+	Article.hasMany(ArticleEntityWhoCategorizedArticleContracts02, {
+		foreignKey: "articleId",
+	});
+	ArticleEntityWhoCategorizedArticleContracts02.belongsTo(Article, {
+		foreignKey: "articleId",
+	});
+
+	EntityWhoCategorizedArticle.hasMany(
+		ArticleEntityWhoCategorizedArticleContracts02,
+		{
+			foreignKey: "entityWhoCategorizesId",
+		}
+	);
+	ArticleEntityWhoCategorizedArticleContracts02.belongsTo(
 		EntityWhoCategorizedArticle,
 		{
 			foreignKey: "entityWhoCategorizesId",

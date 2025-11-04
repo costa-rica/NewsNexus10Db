@@ -11,6 +11,10 @@ import {
 	initArticleEntityWhoCategorizedArticleContract,
 	ArticleEntityWhoCategorizedArticleContract,
 } from "./ArticleEntityWhoCategorizedArticleContract";
+import {
+	initArticleEntityWhoCategorizedArticleContracts02,
+	ArticleEntityWhoCategorizedArticleContracts02,
+} from "./ArticleEntityWhoCategorizedArticleContracts02";
 import { initArticleIsRelevant, ArticleIsRelevant } from "./ArticleIsRelevant";
 import {
 	initArticleKeywordContract,
@@ -65,6 +69,7 @@ export function initModels() {
 	initArticleContent();
 	initArticleDuplicateAnalysis();
 	initArticleEntityWhoCategorizedArticleContract();
+	initArticleEntityWhoCategorizedArticleContracts02();
 	initArticleIsRelevant();
 	initArticleKeywordContract();
 	initArticleReportContract();
@@ -93,6 +98,7 @@ export function initModels() {
 		ArticleContent,
 		ArticleDuplicateAnalysis,
 		ArticleEntityWhoCategorizedArticleContract,
+		ArticleEntityWhoCategorizedArticleContracts02,
 		ArticleIsRelevant,
 		ArticleKeywordContract,
 		ArticleReportContract,
@@ -121,6 +127,7 @@ export {
 	ArticleContent,
 	ArticleDuplicateAnalysis,
 	ArticleEntityWhoCategorizedArticleContract,
+	ArticleEntityWhoCategorizedArticleContracts02,
 	ArticleIsRelevant,
 	ArticleKeywordContract,
 	ArticleReportContract,
