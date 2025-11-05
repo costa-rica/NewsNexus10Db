@@ -227,15 +227,17 @@ API request tracking for news aggregation services.
 
 **Model:** `ArticleContent`
 
-Full text content storage for articles.
+Full text content storage for articles with web scraping status tracking.
 
-| Field     | Type    | Constraints                 | Description               |
-| --------- | ------- | --------------------------- | ------------------------- |
-| id        | INTEGER | PRIMARY KEY, AUTO_INCREMENT | Unique content identifier |
-| articleId | INTEGER | FK, NOT NULL                | Reference to article      |
-| content   | STRING  | NOT NULL                    | Full article content      |
-| createdAt | DATE    | NOT NULL                    | Timestamp                 |
-| updatedAt | DATE    | NOT NULL                    | Timestamp                 |
+| Field                   | Type    | Constraints                 | Description                                                     |
+| ----------------------- | ------- | --------------------------- | --------------------------------------------------------------- |
+| id                      | INTEGER | PRIMARY KEY, AUTO_INCREMENT | Unique content identifier                                       |
+| articleId               | INTEGER | FK, NOT NULL                | Reference to article                                            |
+| content                 | STRING  | NOT NULL                    | Full article content                                            |
+| scrapeStatusCheerio     | BOOLEAN | NULLABLE, DEFAULT NULL      | Cheerio scraping status (null=not attempted, true=success, false=failed) |
+| scrapeStatusPuppeteer   | BOOLEAN | NULLABLE, DEFAULT NULL      | Puppeteer scraping status (null=not attempted, true=success, false=failed) |
+| createdAt               | DATE    | NOT NULL                    | Timestamp                                                       |
+| updatedAt               | DATE    | NOT NULL                    | Timestamp                                                       |
 
 ### ArticleApproveds
 

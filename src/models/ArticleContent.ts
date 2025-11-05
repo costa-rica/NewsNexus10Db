@@ -5,14 +5,18 @@ interface ArticleContentAttributes {
   id: number;
   articleId: number;
   content: string;
+  scrapeStatusCheerio: boolean | null;
+  scrapeStatusPuppeteer: boolean | null;
 }
 
-interface ArticleContentCreationAttributes extends Optional<ArticleContentAttributes, 'id'> {}
+interface ArticleContentCreationAttributes extends Optional<ArticleContentAttributes, 'id' | 'scrapeStatusCheerio' | 'scrapeStatusPuppeteer'> {}
 
 export class ArticleContent extends Model<ArticleContentAttributes, ArticleContentCreationAttributes> implements ArticleContentAttributes {
   public id!: number;
   public articleId!: number;
   public content!: string;
+  public scrapeStatusCheerio!: boolean | null;
+  public scrapeStatusPuppeteer!: boolean | null;
 
   public readonly createdAt!: Date;
   public readonly updatedAt!: Date;
@@ -33,6 +37,16 @@ export function initArticleContent() {
       content: {
         type: DataTypes.STRING,
         allowNull: false,
+      },
+      scrapeStatusCheerio: {
+        type: DataTypes.BOOLEAN,
+        allowNull: true,
+        defaultValue: null,
+      },
+      scrapeStatusPuppeteer: {
+        type: DataTypes.BOOLEAN,
+        allowNull: true,
+        defaultValue: null,
       },
     },
     {
