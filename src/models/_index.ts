@@ -26,6 +26,10 @@ import {
 } from "./ArticleReportContract";
 import { initArticleReviewed, ArticleReviewed } from "./ArticleReviewed";
 import {
+	initArticlesApproved02,
+	ArticlesApproved02,
+} from "./ArticlesApproved02";
+import {
 	initArticleStateContract,
 	ArticleStateContract,
 } from "./ArticleStateContract";
@@ -74,6 +78,7 @@ export function initModels() {
 	initArticleKeywordContract();
 	initArticleReportContract();
 	initArticleReviewed();
+	initArticlesApproved02();
 	initArticleStateContract();
 	initArtificialIntelligence();
 	initEntityWhoCategorizedArticle();
@@ -103,6 +108,7 @@ export function initModels() {
 		ArticleKeywordContract,
 		ArticleReportContract,
 		ArticleReviewed,
+		ArticlesApproved02,
 		ArticleStateContract,
 		ArtificialIntelligence,
 		EntityWhoCategorizedArticle,
@@ -132,6 +138,7 @@ export {
 	ArticleKeywordContract,
 	ArticleReportContract,
 	ArticleReviewed,
+	ArticlesApproved02,
 	ArticleStateContract,
 	ArtificialIntelligence,
 	EntityWhoCategorizedArticle,

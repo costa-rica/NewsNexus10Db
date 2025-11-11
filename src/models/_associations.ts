@@ -8,6 +8,7 @@ import { ArticleIsRelevant } from "./ArticleIsRelevant";
 import { ArticleKeywordContract } from "./ArticleKeywordContract";
 import { ArticleReportContract } from "./ArticleReportContract";
 import { ArticleReviewed } from "./ArticleReviewed";
+import { ArticlesApproved02 } from "./ArticlesApproved02";
 import { ArticleStateContract } from "./ArticleStateContract";
 import { ArtificialIntelligence } from "./ArtificialIntelligence";
 import { EntityWhoCategorizedArticle } from "./EntityWhoCategorizedArticle";
@@ -38,6 +39,13 @@ export function applyAssociations(): void {
 		foreignKey: "artificialIntelligenceId",
 	});
 	EntityWhoCategorizedArticle.belongsTo(ArtificialIntelligence, {
+		foreignKey: "artificialIntelligenceId",
+	});
+
+	ArtificialIntelligence.hasMany(ArticlesApproved02, {
+		foreignKey: "artificialIntelligenceId",
+	});
+	ArticlesApproved02.belongsTo(ArtificialIntelligence, {
 		foreignKey: "artificialIntelligenceId",
 	});
 
@@ -111,6 +119,9 @@ export function applyAssociations(): void {
 
 	Article.hasMany(ArticleIsRelevant, { foreignKey: "articleId" });
 	ArticleIsRelevant.belongsTo(Article, { foreignKey: "articleId" });
+
+	Article.hasMany(ArticlesApproved02, { foreignKey: "articleId" });
+	ArticlesApproved02.belongsTo(Article, { foreignKey: "articleId" });
 
 	// --- ArticleDuplicateAnalysis associations ---
 	Article.hasMany(ArticleDuplicateAnalysis, {
