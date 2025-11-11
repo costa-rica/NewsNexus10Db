@@ -1,6 +1,6 @@
 ![Logo](./docs/images/logoAndNameRound.png)
 
-A Sequelize SQLite module for the NewsNexusDb09 and microservices suite of applications.
+A Sequelize SQLite module for the NewsNexus10Db and microservices suite of applications.
 
 ## Build Instructions
 
@@ -32,22 +32,22 @@ The build process will:
 
 ```bash
 # Install as local file dependency
-npm install file:../NewsNexusDb09
+npm install file:../NewsNexus10Db
 ```
 
 ```javascript
-const { initModels, sequelize } = require("newsnexus08db");
+const { initModels, sequelize } = require("newsnexus10db");
 initModels(); // <-- Initialize models DB in TS solution
 sequelize.sync();
 ```
 
 ```typescript
 // Import in TypeScript projects (with full type support)
-import db from "newsnexusdb09";
+import db from "newsnexus10db";
 const { Article, User, sequelize } = db;
 
 // Or in JavaScript projects
-const db = require("newsnexusdb09");
+const db = require("newsnexus10db");
 const { Article, User, sequelize } = db;
 ```
 

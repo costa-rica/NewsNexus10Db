@@ -4,11 +4,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-NewsNexusDb09 is a TypeScript Sequelize SQLite database module designed for news aggregation and microservices architectures. It provides strongly-typed database models with comprehensive relationships for managing news articles, user workflows, and content categorization.
+NewsNexus10Db is a TypeScript Sequelize SQLite database module designed for news aggregation and microservices architectures. It provides strongly-typed database models with comprehensive relationships for managing news articles, user workflows, and content categorization.
 
 ## Development Commands
 
 ### Build and Development
+
 ```bash
 # Build TypeScript to JavaScript (dist/)
 npm run build
@@ -24,31 +25,38 @@ npm run prepublishOnly
 ```
 
 ### No Testing Framework
+
 This project currently has no test framework configured. When adding tests, refer to the package.json to determine the appropriate testing setup.
 
 ## Architecture Overview
 
 ### Core Structure
+
 - **Database**: SQLite via Sequelize ORM
 - **Models**: Individual TypeScript classes in `src/models/`
 - **Entry Point**: `src/index.ts` exports all models and utilities
 - **Distribution**: Compiled JavaScript + TypeScript declarations in `dist/`
 
 ### Key Files
+
 - `src/models/_connection.ts`: Database connection and configuration
 - `src/models/_index.ts`: Model initialization and exports
 - `src/models/_associations.ts`: All database relationships and foreign keys
 - Each model follows the pattern: `src/models/ModelName.ts`
 
 ### Database Configuration
+
 The database uses environment variables from the consuming application:
+
 - `PATH_DATABASE`: Directory path for SQLite file (default: current directory)
 - `NAME_DB`: Database filename (default: "database.sqlite")
 
 ## Model Patterns
 
 ### Standard Model Structure
+
 All models follow this TypeScript pattern:
+
 ```typescript
 export class ModelName extends Model<
   InferAttributes<ModelName>,
@@ -59,19 +67,24 @@ export class ModelName extends Model<
 }
 
 export function initModelName() {
-  ModelName.init({
-    // Field definitions...
-  }, {
-    sequelize,
-    tableName: "table_name",
-    timestamps: true, // All tables include createdAt/updatedAt
-  });
+  ModelName.init(
+    {
+      // Field definitions...
+    },
+    {
+      sequelize,
+      tableName: "table_name",
+      timestamps: true, // All tables include createdAt/updatedAt
+    }
+  );
   return ModelName;
 }
 ```
 
 ### Model Relationships
+
 Complex many-to-many and foreign key relationships are centrally managed in `_associations.ts`. Key relationship patterns include:
+
 - Articles ↔ States (many-to-many through ArticleStateContract)
 - Articles ↔ Keywords (many-to-many through ArticleKeywordContract)
 - User workflows (ArticleApproved, ArticleReviewed, ArticleIsRelevant)
@@ -80,12 +93,13 @@ Complex many-to-many and foreign key relationships are centrally managed in `_as
 ## Usage as Package
 
 This module is designed to be imported into other applications:
+
 ```typescript
-import db from "newsnexusdb09";
+import db from "newsnexus10db";
 const { Article, User, sequelize } = db;
 
 // Initialize models in consuming app
-import { initModels } from "newsnexusdb09";
+import { initModels } from "newsnexus10db";
 initModels();
 sequelize.sync();
 ```
