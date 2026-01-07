@@ -34,6 +34,10 @@ import {
 	ArticleStateContract,
 } from "./ArticleStateContract";
 import {
+	initArticleStateContract02,
+	ArticleStateContract02,
+} from "./ArticleStateContract02";
+import {
 	initArtificialIntelligence,
 	ArtificialIntelligence,
 } from "./ArtificialIntelligence";
@@ -60,6 +64,7 @@ import {
 	NewsArticleAggregatorSourceStateContract,
 } from "./NewsArticleAggregatorSourceStateContract";
 import { initNewsRssRequest, NewsRssRequest } from "./NewsRssRequest";
+import { initPrompt, Prompt } from "./Prompt";
 import { initReport, Report } from "./Report";
 import { initState, State } from "./State";
 import { initUser, User } from "./User";
@@ -80,6 +85,7 @@ export function initModels() {
 	initArticleReviewed();
 	initArticlesApproved02();
 	initArticleStateContract();
+	initArticleStateContract02();
 	initArtificialIntelligence();
 	initEntityWhoCategorizedArticle();
 	initEntityWhoFoundArticle();
@@ -89,6 +95,7 @@ export function initModels() {
 	initNewsArticleAggregatorSource();
 	initNewsArticleAggregatorSourceStateContract();
 	initNewsRssRequest();
+	initPrompt();
 	initReport();
 	initState();
 	initUser();
@@ -110,6 +117,7 @@ export function initModels() {
 		ArticleReviewed,
 		ArticlesApproved02,
 		ArticleStateContract,
+		ArticleStateContract02,
 		ArtificialIntelligence,
 		EntityWhoCategorizedArticle,
 		EntityWhoFoundArticle,
@@ -119,6 +127,7 @@ export function initModels() {
 		NewsArticleAggregatorSource,
 		NewsArticleAggregatorSourceStateContract,
 		NewsRssRequest,
+		Prompt,
 		Report,
 		State,
 		User,
@@ -140,6 +149,7 @@ export {
 	ArticleReviewed,
 	ArticlesApproved02,
 	ArticleStateContract,
+	ArticleStateContract02,
 	ArtificialIntelligence,
 	EntityWhoCategorizedArticle,
 	EntityWhoFoundArticle,
@@ -149,6 +159,7 @@ export {
 	NewsArticleAggregatorSource,
 	NewsArticleAggregatorSourceStateContract,
 	NewsRssRequest,
+	Prompt,
 	Report,
 	State,
 	User,

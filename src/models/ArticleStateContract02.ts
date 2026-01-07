@@ -1,0 +1,83 @@
+import { DataTypes, Model, Optional } from 'sequelize';
+import { sequelize } from './_connection';
+
+// Define the Attributes Interface
+interface ArticleStateContract02Attributes {
+  id: number;
+  articleId: number;
+  stateId: number;
+  entityWhoCategorizesId: number;
+  promptId: number;
+  isHumanApproved: boolean;
+  isDeterminedToBeError: boolean;
+}
+
+// Define the Creation Attributes Interface
+interface ArticleStateContract02CreationAttributes
+  extends Optional<ArticleStateContract02Attributes, 'id' | 'isHumanApproved' | 'isDeterminedToBeError'> {}
+
+// Define the Class
+export class ArticleStateContract02 extends Model<
+  ArticleStateContract02Attributes,
+  ArticleStateContract02CreationAttributes
+> implements ArticleStateContract02Attributes {
+  public id!: number;
+  public articleId!: number;
+  public stateId!: number;
+  public entityWhoCategorizesId!: number;
+  public promptId!: number;
+  public isHumanApproved!: boolean;
+  public isDeterminedToBeError!: boolean;
+
+  // Timestamps
+  public readonly createdAt!: Date;
+  public readonly updatedAt!: Date;
+}
+
+// Define the initialization function
+export function initArticleStateContract02() {
+  ArticleStateContract02.init(
+    {
+      id: {
+        type: DataTypes.INTEGER,
+        autoIncrement: true,
+        primaryKey: true,
+      },
+      articleId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      stateId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      entityWhoCategorizesId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      promptId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      isHumanApproved: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: false,
+      },
+      isDeterminedToBeError: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: false,
+      },
+    },
+    {
+      sequelize,
+      modelName: 'ArticleStateContract02',
+      tableName: 'ArticleStateContracts02',
+      timestamps: true,
+    }
+  );
+  return ArticleStateContract02;
+}
+
+export default ArticleStateContract02;

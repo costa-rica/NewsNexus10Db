@@ -10,6 +10,7 @@ import { ArticleReportContract } from "./ArticleReportContract";
 import { ArticleReviewed } from "./ArticleReviewed";
 import { ArticlesApproved02 } from "./ArticlesApproved02";
 import { ArticleStateContract } from "./ArticleStateContract";
+import { ArticleStateContract02 } from "./ArticleStateContract02";
 import { ArtificialIntelligence } from "./ArtificialIntelligence";
 import { EntityWhoCategorizedArticle } from "./EntityWhoCategorizedArticle";
 import { EntityWhoFoundArticle } from "./EntityWhoFoundArticle";
@@ -19,6 +20,7 @@ import { NewsApiRequestWebsiteDomainContract } from "./NewsApiRequestWebsiteDoma
 import { NewsArticleAggregatorSource } from "./NewsArticleAggregatorSource";
 import { NewsArticleAggregatorSourceStateContract } from "./NewsArticleAggregatorSourceStateContract";
 import { NewsRssRequest } from "./NewsRssRequest";
+import { Prompt } from "./Prompt";
 import { Report } from "./Report";
 import { State } from "./State";
 import { User } from "./User";
@@ -52,6 +54,13 @@ export function applyAssociations(): void {
 	// --- State associations ---
 	State.hasMany(ArticleStateContract, { foreignKey: "stateId" });
 	ArticleStateContract.belongsTo(State, { foreignKey: "stateId" });
+
+	State.hasMany(ArticleStateContract02, { foreignKey: "stateId" });
+	ArticleStateContract02.belongsTo(State, { foreignKey: "stateId" });
+
+	// --- Prompt associations ---
+	Prompt.hasMany(ArticleStateContract02, { foreignKey: "promptId" });
+	ArticleStateContract02.belongsTo(Prompt, { foreignKey: "promptId" });
 
 	// --- Report associations ---
 	Report.hasMany(ArticleReportContract, { foreignKey: "reportId" });
@@ -122,6 +131,9 @@ export function applyAssociations(): void {
 
 	Article.hasMany(ArticlesApproved02, { foreignKey: "articleId" });
 	ArticlesApproved02.belongsTo(Article, { foreignKey: "articleId" });
+
+	Article.hasMany(ArticleStateContract02, { foreignKey: "articleId" });
+	ArticleStateContract02.belongsTo(Article, { foreignKey: "articleId" });
 
 	// --- ArticleDuplicateAnalysis associations ---
 	Article.hasMany(ArticleDuplicateAnalysis, {
@@ -245,6 +257,14 @@ export function applyAssociations(): void {
 			foreignKey: "entityWhoCategorizesId",
 		}
 	);
+
+	// --- EntityWhoCategorizedArticle associations with ArticleStateContract02 ---
+	EntityWhoCategorizedArticle.hasMany(ArticleStateContract02, {
+		foreignKey: "entityWhoCategorizesId",
+	});
+	ArticleStateContract02.belongsTo(EntityWhoCategorizedArticle, {
+		foreignKey: "entityWhoCategorizesId",
+	});
 
 	console.log("✅ Associations have been set up");
 }
