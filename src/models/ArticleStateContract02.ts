@@ -10,8 +10,8 @@ interface ArticleStateContract02Attributes {
   promptId: number;
   isHumanApproved: boolean;
   isDeterminedToBeError: boolean;
-  occuredInTheUS: boolean;
-  reasoning: string;
+  occuredInTheUS: boolean | null;
+  reasoning: string | null;
 }
 
 // Define the Creation Attributes Interface
@@ -40,8 +40,8 @@ export class ArticleStateContract02
   public promptId!: number;
   public isHumanApproved!: boolean;
   public isDeterminedToBeError!: boolean;
-  public occuredInTheUS!: boolean;
-  public reasoning!: string;
+  public occuredInTheUS!: boolean | null;
+  public reasoning!: string | null;
 
   // Timestamps
   public readonly createdAt!: Date;
@@ -85,12 +85,11 @@ export function initArticleStateContract02() {
       },
       occuredInTheUS: {
         type: DataTypes.BOOLEAN,
-        allowNull: false,
-        defaultValue: false,
+        allowNull: true,
       },
       reasoning: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
       },
     },
     {

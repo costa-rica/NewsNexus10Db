@@ -512,7 +512,7 @@ Enhanced article-state relationship tracking with AI agent metadata. Stores AI-a
 | promptId               | INTEGER | FK, NOT NULL                | Reference to prompt used for categorization              |
 | isHumanApproved        | BOOLEAN | DEFAULT false               | Human approval status of AI categorization               |
 | isDeterminedToBeError  | BOOLEAN | DEFAULT false               | Error flag for categorization                            |
-| occuredInTheUS         | BOOLEAN | DEFAULT false               | Flag indicating AI failed to assign a state or not in US |
+| occuredInTheUS         | BOOLEAN | NULLABLE                    | Flag indicating AI failed to assign a state or not in US |
 | reasoning              | STRING  | NULLABLE                    | Reasoning for categorization                             |
 | createdAt              | DATE    | NOT NULL                    | Timestamp                                                |
 | updatedAt              | DATE    | NOT NULL                    | Timestamp                                                |
