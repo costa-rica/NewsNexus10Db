@@ -503,18 +503,19 @@ Many-to-many relationship between Articles and States.
 
 Enhanced article-state relationship tracking with AI agent metadata. Stores AI-assigned article-state categorizations including which entity categorized the article, which prompt was used, human approval status, and error tracking.
 
-| Field                  | Type    | Constraints                 | Description                                 |
-| ---------------------- | ------- | --------------------------- | ------------------------------------------- |
-| id                     | INTEGER | PRIMARY KEY, AUTO_INCREMENT | Unique contract ID                          |
-| articleId              | INTEGER | FK, NOT NULL                | Reference to article                        |
-| stateId                | INTEGER | FK, NOT NULL                | Reference to state                          |
-| entityWhoCategorizesId | INTEGER | FK, NOT NULL                | Reference to categorizing entity            |
-| promptId               | INTEGER | FK, NOT NULL                | Reference to prompt used for categorization |
-| isHumanApproved        | BOOLEAN | DEFAULT false               | Human approval status of AI categorization  |
-| isDeterminedToBeError  | BOOLEAN | DEFAULT false               | Error flag for categorization               |
-| reasoning              | STRING  | NULLABLE                    | Reasoning for categorization                |
-| createdAt              | DATE    | NOT NULL                    | Timestamp                                   |
-| updatedAt              | DATE    | NOT NULL                    | Timestamp                                   |
+| Field                  | Type    | Constraints                 | Description                                              |
+| ---------------------- | ------- | --------------------------- | -------------------------------------------------------- |
+| id                     | INTEGER | PRIMARY KEY, AUTO_INCREMENT | Unique contract ID                                       |
+| articleId              | INTEGER | FK, NOT NULL                | Reference to article                                     |
+| stateId                | INTEGER | FK, NULLABLE                | Reference to state                                       |
+| entityWhoCategorizesId | INTEGER | FK, NOT NULL                | Reference to categorizing entity                         |
+| promptId               | INTEGER | FK, NOT NULL                | Reference to prompt used for categorization              |
+| isHumanApproved        | BOOLEAN | DEFAULT false               | Human approval status of AI categorization               |
+| isDeterminedToBeError  | BOOLEAN | DEFAULT false               | Error flag for categorization                            |
+| occuredInTheUS         | BOOLEAN | DEFAULT false               | Flag indicating AI failed to assign a state or not in US |
+| reasoning              | STRING  | NULLABLE                    | Reasoning for categorization                             |
+| createdAt              | DATE    | NOT NULL                    | Timestamp                                                |
+| updatedAt              | DATE    | NOT NULL                    | Timestamp                                                |
 
 ### ArticleReportContracts
 

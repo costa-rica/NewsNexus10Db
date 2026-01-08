@@ -5,11 +5,12 @@ import { sequelize } from "./_connection";
 interface ArticleStateContract02Attributes {
   id: number;
   articleId: number;
-  stateId: number;
+  stateId: number | null;
   entityWhoCategorizesId: number;
   promptId: number;
   isHumanApproved: boolean;
   isDeterminedToBeError: boolean;
+  occuredInTheUS: boolean;
   reasoning: string;
 }
 
@@ -17,7 +18,11 @@ interface ArticleStateContract02Attributes {
 interface ArticleStateContract02CreationAttributes
   extends Optional<
     ArticleStateContract02Attributes,
-    "id" | "isHumanApproved" | "isDeterminedToBeError"
+    | "id"
+    | "stateId"
+    | "isHumanApproved"
+    | "isDeterminedToBeError"
+    | "occuredInTheUS"
   > {}
 
 // Define the Class
@@ -30,11 +35,12 @@ export class ArticleStateContract02
 {
   public id!: number;
   public articleId!: number;
-  public stateId!: number;
+  public stateId!: number | null;
   public entityWhoCategorizesId!: number;
   public promptId!: number;
   public isHumanApproved!: boolean;
   public isDeterminedToBeError!: boolean;
+  public occuredInTheUS!: boolean;
   public reasoning!: string;
 
   // Timestamps
@@ -57,7 +63,7 @@ export function initArticleStateContract02() {
       },
       stateId: {
         type: DataTypes.INTEGER,
-        allowNull: false,
+        allowNull: true,
       },
       entityWhoCategorizesId: {
         type: DataTypes.INTEGER,
@@ -73,6 +79,11 @@ export function initArticleStateContract02() {
         defaultValue: false,
       },
       isDeterminedToBeError: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: false,
+      },
+      occuredInTheUS: {
         type: DataTypes.BOOLEAN,
         allowNull: false,
         defaultValue: false,
