@@ -1,5 +1,5 @@
-import { DataTypes, Model, Optional } from 'sequelize';
-import { sequelize } from './_connection';
+import { DataTypes, Model, Optional } from "sequelize";
+import { sequelize } from "./_connection";
 
 // Define the Attributes Interface
 interface ArticleStateContract02Attributes {
@@ -10,17 +10,24 @@ interface ArticleStateContract02Attributes {
   promptId: number;
   isHumanApproved: boolean;
   isDeterminedToBeError: boolean;
+  reasoning: string;
 }
 
 // Define the Creation Attributes Interface
 interface ArticleStateContract02CreationAttributes
-  extends Optional<ArticleStateContract02Attributes, 'id' | 'isHumanApproved' | 'isDeterminedToBeError'> {}
+  extends Optional<
+    ArticleStateContract02Attributes,
+    "id" | "isHumanApproved" | "isDeterminedToBeError"
+  > {}
 
 // Define the Class
-export class ArticleStateContract02 extends Model<
-  ArticleStateContract02Attributes,
-  ArticleStateContract02CreationAttributes
-> implements ArticleStateContract02Attributes {
+export class ArticleStateContract02
+  extends Model<
+    ArticleStateContract02Attributes,
+    ArticleStateContract02CreationAttributes
+  >
+  implements ArticleStateContract02Attributes
+{
   public id!: number;
   public articleId!: number;
   public stateId!: number;
@@ -28,6 +35,7 @@ export class ArticleStateContract02 extends Model<
   public promptId!: number;
   public isHumanApproved!: boolean;
   public isDeterminedToBeError!: boolean;
+  public reasoning!: string;
 
   // Timestamps
   public readonly createdAt!: Date;
@@ -69,11 +77,15 @@ export function initArticleStateContract02() {
         allowNull: false,
         defaultValue: false,
       },
+      reasoning: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
     },
     {
       sequelize,
-      modelName: 'ArticleStateContract02',
-      tableName: 'ArticleStateContracts02',
+      modelName: "ArticleStateContract02",
+      tableName: "ArticleStateContracts02",
       timestamps: true,
     }
   );
